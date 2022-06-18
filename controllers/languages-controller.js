@@ -15,16 +15,6 @@ languages.get('/', (req, res) => {
         })
 })
 
-// Show:
-// find a specific langugae
-languages.get('/:name', (req, res) => {
-    // find one language based on the parameter (make sure its lower case)
-    Language.findOne({ name: req.params.language.toLowerCase() })
-        .then(foundLanguage => {
-            res.json(foundLanguage)
-        })
-})
-
 languages.get('/seed', (req, res) => {
     Language.insertMany([
         {
@@ -58,6 +48,16 @@ languages.get('/seed', (req, res) => {
             res.json({
                 message: "Seed successful!"
             })
+        })
+})
+
+// Show:
+// find a specific langugae
+languages.get('/:language', (req, res) => {
+    // find one language based on the parameter (make sure its lower case)
+    Language.findOne({ name: req.params.language.toLowerCase() })
+        .then(foundLanguage => {
+            res.json(foundLanguage)
         })
 })
 
